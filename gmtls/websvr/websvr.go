@@ -21,10 +21,30 @@ const (
 	sm2SignKeyPath  = "./certs/sm2_sign_key.pem"
 	sm2EncCertPath  = "./certs/sm2_enc_cert.cer"
 	sm2EncKeyPath   = "./certs/sm2_enc_key.pem"
+
+	xiansRsaCertPath     = "./certs/xians.crt"
+	xiansRsaKeyPath      = "./certs/xians.key"
+	xiansSm2EncCertPath  = "./certs/xians_enc_sm2.crt"
+	xiansSm2EncKeyPath   = "./certs/xians_sm2.key"
+	xiansSm2SignCertPath = "./certs/xians_sign_sm2.crt"
+	xiansSm2SignKeyPath  = "./certs/xians_sm2.key"
 )
 
 // RSA配置
 func loadRsaConfig() (*gmtls.Config, error) {
+	cert, err := gmtls.LoadX509KeyPair(rsaCertPath, rsaKeyPath)
+	if err != nil {
+		return nil, err
+	}
+	return &gmtls.Config{Certificates: []gmtls.Certificate{cert}}, nil
+}
+
+// RSA配置
+func loadXiansRsaConfig() (*gmtls.Config, error) {
+	_, err := tls.LoadX509KeyPair(rsaCertPath, rsaKeyPath)
+	if err != nil {
+		return nil, err
+	}
 	cert, err := gmtls.LoadX509KeyPair(rsaCertPath, rsaKeyPath)
 	if err != nil {
 		return nil, err
@@ -48,6 +68,22 @@ func loadSM2Config() (*gmtls.Config, error) {
 	}, nil
 }
 
+// SM2配置
+func loadXiansSM2Config() (*gmtls.Config, error) {
+	sigCert, err := gmtls.LoadX509KeyPair(xiansSm2SignCertPath, xiansSm2SignKeyPath)
+	if err != nil {
+		return nil, err
+	}
+	encCert, err := gmtls.LoadX509KeyPair(xiansSm2EncCertPath, xiansSm2EncKeyPath)
+	if err != nil {
+		return nil, err
+	}
+	return &gmtls.Config{
+		GMSupport:    &gmtls.GMSupport{},
+		Certificates: []gmtls.Certificate{sigCert, encCert},
+	}, nil
+}
+
 // 切换GMSSL/TSL
 func loadAutoSwitchConfig() (*gmtls.Config, error) {
 	rsaKeypair, err := gmtls.LoadX509KeyPair(rsaCertPath, rsaKeyPath)
@@ -62,6 +98,23 @@ func loadAutoSwitchConfig() (*gmtls.Config, error) {
 	if err != nil {
 		return nil, err
 
+	}
+	return gmtls.NewBasicAutoSwitchConfig(&sigCert, &encCert, &rsaKeypair)
+}
+
+// 切换GMSSL/TSL
+func loadXiansAutoSwitchConfig() (*gmtls.Config, error) {
+	rsaKeypair, err := gmtls.LoadX509KeyPair(xiansRsaCertPath, xiansRsaKeyPath)
+	if err != nil {
+		return nil, err
+	}
+	sigCert, err := gmtls.LoadX509KeyPair(xiansSm2SignCertPath, xiansSm2SignKeyPath)
+	if err != nil {
+		return nil, err
+	}
+	encCert, err := gmtls.LoadX509KeyPair(xiansSm2EncCertPath, xiansSm2EncKeyPath)
+	if err != nil {
+		return nil, err
 	}
 	return gmtls.NewBasicAutoSwitchConfig(&sigCert, &encCert, &rsaKeypair)
 }
