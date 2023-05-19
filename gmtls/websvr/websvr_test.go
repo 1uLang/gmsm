@@ -3,14 +3,14 @@ package websvr
 import (
 	"crypto/tls"
 	"fmt"
-	"github.com/tjfoc/gmsm/x509"
+	"github.com/1ulang/gmsm/x509"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"testing"
 	"time"
 
-	"github.com/tjfoc/gmsm/gmtls"
+	"github.com/1ulang/gmsm/gmtls"
 )
 
 const (
@@ -176,4 +176,7 @@ func Test_tls(t *testing.T) {
 	go gmGCMClientRun()
 	<-end
 
+}
+func Test_GMHttpsServer(t *testing.T) {
+	ServerRun()
 }
