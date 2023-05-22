@@ -21,7 +21,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/1ulang/gmsm/x509"
+	"github.com/1uLang/gmsm/x509"
 )
 
 // NewHTTPSClient 创建国密HTTPS客户端，只对服务端进行身份认证（验证服务端证书）。

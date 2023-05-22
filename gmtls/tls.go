@@ -29,8 +29,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/1ulang/gmsm/sm2"
-	X "github.com/1ulang/gmsm/x509"
+	"github.com/1uLang/gmsm/sm2"
+	X "github.com/1uLang/gmsm/x509"
 )
 
 // Server returns a new TLS server side connection

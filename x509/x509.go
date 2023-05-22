@@ -40,9 +40,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/1ulang/gmsm/sm2"
+	"github.com/1uLang/gmsm/sm2"
 
-	"github.com/1ulang/gmsm/sm3"
+	"github.com/1uLang/gmsm/sm3"
 	"golang.org/x/crypto/ripemd160"
 	"golang.org/x/crypto/sha3"
 )

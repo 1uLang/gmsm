@@ -32,7 +32,7 @@ import (
 	"math/big"
 	"reflect"
 
-	"github.com/1ulang/gmsm/sm2"
+	"github.com/1uLang/gmsm/sm2"
 )
 
 /*

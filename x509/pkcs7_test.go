@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/1ulang/gmsm/sm2"
+	"github.com/1uLang/gmsm/sm2"
 )
 
 func TestPKCS7SM2(t *testing.T) {

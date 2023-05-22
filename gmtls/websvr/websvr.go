@@ -3,8 +3,8 @@ package websvr
 import (
 	"crypto/tls"
 	x "crypto/x509"
-	"github.com/1ulang/gmsm/gmtls"
-	"github.com/1ulang/gmsm/x509"
+	"github.com/1uLang/gmsm/gmtls"
+	"github.com/1uLang/gmsm/x509"
 	"io/ioutil"
 )
 

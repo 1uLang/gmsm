@@ -28,7 +28,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/1ulang/gmsm/x509"
+	"github.com/1uLang/gmsm/x509"
 )
 
 const (
